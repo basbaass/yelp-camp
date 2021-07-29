@@ -47,9 +47,12 @@
                     <h5 class="card-title">Rating: <%= review.rating %> </h5>
                     <p class="class-text">Body: <%= review.body %> </p>
                 </div> 
+                <% console.log(review, currentUser) %>
+                <% if(review && currentUser && review.author.equals(currentUser._id)) { %>
                 <form class="d-grid gap-2 d-md-flex justify-content-md-end" action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
                     <button class="btn btn-link">Delete</button>
                 </form>
+                <% } %> 
             </div>
             <% } %>
         </div>
