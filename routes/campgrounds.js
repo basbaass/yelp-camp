@@ -16,7 +16,6 @@ router.get('/:id/edit', isLoggedIn, wrapAsync(campground.renderEditForm))
 
 router.get('/:id', wrapAsync(campground.renderShowPage));
 
-
 router.post('/', isLoggedIn, validateCampground,  wrapAsync(campground.createCamp))
 
 router.put('/:id', isLoggedIn, validateOwnership, validateCampground, wrapAsync(campground.editCamp))
