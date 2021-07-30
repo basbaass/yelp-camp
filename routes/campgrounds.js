@@ -1,12 +1,16 @@
 const express = require('express');
 const wrapAsync = require('../utils/wrapAsync');
-const ExpressError = require('../utils/ExpressError');
-const { campgroundSchema } = require('../schemas.js');
+
+//- require model
 const Campground = require('../models/campground');
+//- require Review Controller
 const campground = require('../controllers/campgrounds');
+//- require middleware
 const { isLoggedIn, validateOwnership, validateCampground } = require('../middleware');
 
 const router = express.Router();
+
+//- ROUTES
 
 router.get('/', wrapAsync(campground.renderIndex))
 
