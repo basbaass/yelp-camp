@@ -13,15 +13,14 @@ const user = require('../controllers/users');
 
 //- ROUTES
 
+router.route('/register').
+    get(user.renderRegisterForm).
+    post(user.register);
 
-router.get('/register', user.renderRegisterForm);
 
-router.post('/register', user.register)
-
-router.get('/login', user.renderLoginForm);
-
-router.post('/login',
-    passport.authenticate('local',
+router.route('/login').
+    get(user.renderLoginForm).
+    post(passport.authenticate('local',
         {
             failureFlash: true,
             failureRedirect: '/login'

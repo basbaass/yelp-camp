@@ -17,10 +17,11 @@ const router = express.Router({mergeParams: true});
 
 //- ROUTES
 
-router.post('/', isLoggedIn, validateReview, wrapAsync(review.createReview))
+router.route('/')
+    .post(isLoggedIn, validateReview, wrapAsync(review.createReview))
+    .get(wrapAsync(review.displayReviews));
 
-router.get('/', wrapAsync(review.displayReviews))
-
+    
 router.delete('/:r_id', isLoggedIn, validateReviewOwnership, wrapAsync(review.destroyReview))
 
 

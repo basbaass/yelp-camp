@@ -12,22 +12,20 @@ const router = express.Router();
 
 //- ROUTES
 
-router.get('/', wrapAsync(campground.renderIndex))
+router.route('/')
+    .get(wrapAsync(campground.renderIndex))
+    .post(isLoggedIn, validateCampground,  wrapAsync(campground.createCamp))
+
+
+router.route('/:id')
+    .get(wrapAsync(campground.renderShowPage))
+    .put(isLoggedIn, validateOwnership, validateCampground, wrapAsync(campground.editCamp))
+    .delete(isLoggedIn, validateOwnership, wrapAsync(campground.destoryCamp));
+
 
 router.get('/new', isLoggedIn, campground.renderNewForm);
 
 router.get('/:id/edit', isLoggedIn, wrapAsync(campground.renderEditForm))
-
-router.get('/:id', wrapAsync(campground.renderShowPage));
-
-router.post('/', isLoggedIn, validateCampground,  wrapAsync(campground.createCamp))
-
-router.put('/:id', isLoggedIn, validateOwnership, validateCampground, wrapAsync(campground.editCamp))
-
-router.delete('/:id', isLoggedIn, validateOwnership, wrapAsync(campground.destoryCamp))
-
-
-
 
 
 module.exports = router;
