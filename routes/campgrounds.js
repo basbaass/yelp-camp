@@ -7,14 +7,27 @@ const Campground = require('../models/campground');
 const campground = require('../controllers/campgrounds');
 //- require middleware
 const { isLoggedIn, validateOwnership, validateCampground } = require('../middleware');
+const multer = require('multer');
+const { storage } = require('../cloudinary/index');
+const upload = multer({storage})
 
 const router = express.Router();
 
+
 //- ROUTES
+
+
+console.log("in campground route")
+
+router.get('/new', isLoggedIn, campground.renderNewForm);
 
 router.route('/')
     .get(wrapAsync(campground.renderIndex))
-    .post(isLoggedIn, validateCampground,  wrapAsync(campground.createCamp))
+    //.post(isLoggedIn, validateCampground,  wrapAsync(campground.createCamp))
+    .post(upload.array('image'), (req, res) => {
+        console.log(req.files)
+        res.send("done")
+    })
 
 
 router.route('/:id')
@@ -23,7 +36,6 @@ router.route('/:id')
     .delete(isLoggedIn, validateOwnership, wrapAsync(campground.destoryCamp));
 
 
-router.get('/new', isLoggedIn, campground.renderNewForm);
 
 router.get('/:id/edit', isLoggedIn, wrapAsync(campground.renderEditForm))
 
