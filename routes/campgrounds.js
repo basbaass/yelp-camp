@@ -23,16 +23,12 @@ router.get('/new', isLoggedIn, campground.renderNewForm);
 
 router.route('/')
     .get(wrapAsync(campground.renderIndex))
-    //.post(isLoggedIn, validateCampground,  wrapAsync(campground.createCamp))
-    .post(upload.array('image'), (req, res) => {
-        console.log(req.files)
-        res.send("done")
-    })
+    .post(isLoggedIn, upload.array('image'), validateCampground, wrapAsync(campground.createCamp))
 
 
 router.route('/:id')
     .get(wrapAsync(campground.renderShowPage))
-    .put(isLoggedIn, validateOwnership, validateCampground, wrapAsync(campground.editCamp))
+    .put(isLoggedIn, upload.array('image'), validateOwnership, validateCampground, wrapAsync(campground.editCamp))
     .delete(isLoggedIn, validateOwnership, wrapAsync(campground.destoryCamp));
 
 

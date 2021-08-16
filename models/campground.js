@@ -1,3 +1,4 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
 const { campgroundSchema } = require('../schemas');
 const Review = require('./review');
@@ -8,7 +9,12 @@ const CampgroundSchema = new Schema({
     
     title: String,
     price: Number,
-    image: String,
+    images: [
+        {
+            filename: String,
+            url: String
+        }
+    ],
     description: String,
     location: String,
     author: {
