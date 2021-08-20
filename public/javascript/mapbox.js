@@ -6,6 +6,10 @@ const map = new mapboxgl.Map({
     zoom: 9 // starting zoom
     });
 
+// Add navigation controls - defaults to top-right, but can be added as final arg. = new mapboxgl.NavigationControl(), 'bottom-left');
+map.addControl(new mapboxgl.NavigationControl());
+
+
 // Create a default Marker and add it to the map.
 const marker1 = new mapboxgl.Marker()
 .setLngLat(JSON.parse(coordinates))
