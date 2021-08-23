@@ -8,6 +8,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 
 
+
+
 const path = require('path');
 const ExpressError = require('./utils/ExpressError');
 
@@ -24,10 +26,11 @@ const LocalStrategy = require('passport-local');
 
 const engine = require('ejs-mate');
 const methodOverride = require('method-override');
+const MongoStore = require('connect-mongo');
 
 const dbUrl = process.env.DB_URL;
-
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+//'mongodb://localhost:27017/yelp-camp'
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -43,8 +46,20 @@ db.once('open', ()=> {
 
 const app = express();
 
-const sessionConfig = {
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: 'bluexsteel'
+    }
+});
 
+store.on("error", function (e) {
+    console.log("Session Store Error")
+})
+
+const sessionConfig = {
+    store,
     name: '_session_id',
     secret: 'hambalyo',
     resave: false,
