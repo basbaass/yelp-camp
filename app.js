@@ -28,8 +28,10 @@ const engine = require('ejs-mate');
 const methodOverride = require('method-override');
 const MongoStore = require('connect-mongo');
 
+//
 const dbUrl = process.env.DB_URL;
-//'mongodb://localhost:27017/yelp-camp'
+const secret = process.env.SECRET;
+
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -50,7 +52,7 @@ const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'bluexsteel'
+        secret
     }
 });
 
@@ -61,7 +63,7 @@ store.on("error", function (e) {
 const sessionConfig = {
     store,
     name: '_session_id',
-    secret: 'hambalyo',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
