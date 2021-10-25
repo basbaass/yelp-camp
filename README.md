@@ -10,26 +10,23 @@ to see the app live, visit [Yelp-Camp](https://gentle-plateau-76492.herokuapp.co
 
 ## Features
 
-Authentication
+* Authentication
 
-Authorization
+* Authorization
 
-Crud Functionality 
+* Crud Functionality 
 
-Responsive Web Design
+* Responsive Web Design
 
-Flashing Messages
+* Flashing Messages
 
 ### Enhancements
 
-Cloudinary - Cloud Image Storage Service
+* Cloudinary - Cloud Image Storage Service
 
-Helmet - Security Upgrade
-
-
+* Helmet - Security Upgrade
 
 ## Usage
-
 
 ### Clone Repo
 
