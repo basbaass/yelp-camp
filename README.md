@@ -20,7 +20,7 @@ Responsive Web Design
 
 Flashing Messages
 
-###Enhancements
+### Enhancements
 
 Cloudinary - Cloud Image Storage Service
 
@@ -31,7 +31,7 @@ Helmet - Security Upgrade
 ## Usage
 
 
-###Clone Repo
+### Clone Repo
 
 ```bash
 git clone https://github.com/fhersi/yelpCamp.git
