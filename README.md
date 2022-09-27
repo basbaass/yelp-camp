@@ -31,7 +31,7 @@ to see the app live, visit [Yelp-Camp](https://gentle-plateau-76492.herokuapp.co
 ### Clone Repo
 
 ```bash
-git clone https://github.com/fhersi/yelpCamp.git
+git clone https://github.com/fruitsfever/yelpCamp.git
 ```
 
 ### Install dependencies
